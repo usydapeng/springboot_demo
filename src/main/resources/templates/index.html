@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="layout :: header ('多贝云')">
+</head>
+<body>
+	<div th:replace="layout :: menu_main"></div>
+
+	<style type="text/css">
+
+		.img_cover {
+			height: 150px;
+		}
+
+		.cover_wrap {
+			overflow: hidden;
+		}
+
+		.article_wrapper {
+			padding-top: 20px;
+			padding-bottom: 20px;
+			border-top: 2px solid #CCC;
+		}
+
+		.content_wrap {
+			padding-left: 20px;
+		}
+
+	</style>
+
+	<div class="container">
+		<h3>期刊订阅</h3>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="article_wrapper row" th:each="article : ${articleList}">
+					<div class="fl cover_wrap col-md-3">
+						<img class="img_cover" th:src="@{'/shop/image/' + ${article.coverImg}}"/>
+					</div>
+					<div class="fl content_wrap col-md-9">
+						<h4>
+							<a th:href="@{'/shop/article/' + ${article.id}}" th:text="${article.title}" th:if="${customUser != null and customUser.role == 1}"></a>
+							<a href="#" class="unbought" th:if="${customUser == null or customUser.role == 0}">
+								<span th:text="${article.title}"></span>
+								<br/>
+								<br/>
+								<input type="button" class="btn btn-sm" style="background-color: orange; color: #ffffff" value="订阅"/>
+							</a>
+						</h4>
+						<div th:text="${article.brief}">contentcontentcontent</div>
+					</div>
+					<div class="cf"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="layout :: footer"></div>
+
+	<script type="text/javascript">
+		$(function(){
+			$(".unbought").click(function(){
+				if(window.confirm("您还未订阅, 前往订阅")){
+					window.location.href = "/shop/purchase";
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="layout :: header ('多贝云')">
+</head>
+<body>
+	<div th:replace="layout :: menu_main"></div>
+
+	<div class="container">
+		<h3 th:text="${article.title}"></h3>
+		<hr/>
+		<div class="col-md-8">
+			<div th:utext="${article.content}"></div>
+		</div>
+	</div>
+
+	<div th:replace="layout :: footer"></div>
+</body>
+</html>

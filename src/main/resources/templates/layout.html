@@ -1,0 +1,83 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head lang="zh-cn" th:fragment="header (title)">
+	<meta charset="UTF-8"/>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="baidu-site-verification" content="pwWlYEzIse" />
+	<title th:text="${title}">首页</title>
+
+	<link type="text/css" rel="stylesheet" th:href="@{/shop/bootstrap/css/bootstrap.min.css}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" th:href="@{/shop/bootstrap/css/bootstrap-theme.min.css}" media="screen,projection"/>
+	<style type="text/css">
+
+		.footer .info div {
+			color: #aaa;
+			display: inline-block;
+		}
+
+		.footer .info {
+			margin-top: 40px;
+			border-top: 1px solid #aaa;
+			padding-top: 20px;
+			padding-bottom: 40px;
+			color: #aaa;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="custom-menu-wrapper" th:fragment="menu_main">
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/" th:text="${domainType eq 2 ? '社群课' : '多贝云'}">多贝云</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a th:href="@{/shop}">期刊订阅</a></li>
+						<li><a th:href="@{/shop/qidai}">分类(敬请期待)</a></li>
+						<li><a th:href="@{/shop/qidai}">下载APP(敬请期待)</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/shop/login}" shiro:guest="">登录</a></li>
+						<li><a th:href="@{/shop/register}" shiro:guest="">注册</a></li>
+						<li><a href="#" shiro:user="" th:text="${customUser.username}"></a></li>
+						<li><a th:href="@{/shop/logout}" shiro:user="">退出</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="footer" th:fragment="footer">
+		<div class="container">
+			<div class="info">
+				<div>北京多贝兄弟信息技术有限公司</div>
+				<br/>
+				<div th:if="${not (domainType eq 2)}">京ICP备11039646号-12</div>
+				<div th:if="${domainType eq 2}">京ICP备16027043号-2</div>
+				<br/>
+				<br/>
+				<div>地址: 北京市海淀区丹棱街18号创富大厦610室</div>
+				<br/>
+				<div>联系电话: 400-007-5575</div>
+			</div>
+		</div>
+		<script type="text/javascript" th:src="@{/shop/jquery-1.11.3.min.js}"></script>
+		<script type="text/javascript" th:src="@{/shop/bootstrap/js/bootstrap.min.js}"></script>
+	</div>
+
+</body>
+</html>

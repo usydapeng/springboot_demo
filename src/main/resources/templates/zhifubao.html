@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="zh-cn" th:replace="layout :: header ('支付')">
+</head>
+<body>
+	<div th:replace="layout :: menu_main"></div>
+
+	<form method="get" action="https://mapi.alipay.com/gateway.do" style="display: none">
+		<input type="text" name="service" th:value="${paymentBean.service}"/>
+		<input type="text" name="partner" th:value="${paymentBean.partner}"/>
+		<input type="text" name="_input_charset" th:value="${paymentBean.inputCharset}"/>
+		<input type="text" name="notify_url" th:value="${paymentBean.notifyUrl}"/>
+		<input type="text" name="out_trade_no" th:value="${paymentBean.outTradeNo}"/>
+		<input type="text" name="subject" th:value="${paymentBean.subject}"/>
+		<input type="text" name="total_fee" th:value="${paymentBean.totalFee}"/>
+		<input type="text" name="sign_type" th:value="${paymentBean.signType}"/>
+		<input type="text" name="sign" th:value="${paymentBean.sign}"/>
+		<input type="text" name="body" th:value="${paymentBean.body}"/>
+		<input type="text" name="seller_email" th:value="${paymentBean.sellerEmail}"/>
+		<input type="text" name="it_b_pay" th:value="${paymentBean.itBPay}"/>
+		<input type="text" name="payment_type" th:value="${paymentBean.paymentType}"/>
+		<input type="text" name="return_url" th:value="${paymentBean.returnUrl}"/>
+	</form>
+
+	<div th:replace="layout :: footer"></div>
+
+	<script type="text/javascript">
+		$(function(){
+			$("form").submit();
+		});
+	</script>
+</body>
+</html>
